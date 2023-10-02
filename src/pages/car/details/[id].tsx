@@ -1,7 +1,8 @@
 import { useRouter } from "next/router";
-import carModels from "../../data/carData";
+import carModels from "../../../data/carData";
 import Image from "next/image";
 import { FiArrowLeft } from "react-icons/fi";
+import MetaTitle from "@/components/MetaTitle";
 
 const formatCarType = (type: any) => {
   return type
@@ -47,9 +48,14 @@ const CarDetails = () => {
 
   return (
     <>
+      <MetaTitle
+        title={String(car.model)}
+        description={String(car.description)}
+      />
+
       <div className="container mx-auto flex flex-col items-center justify-center mt-10">
         <div className="w-10/12">
-          <h1 className="flex items-center text-3xl font-bold uppercase mb-3">
+          <h1 className="flex items-center sm:text-lg md:text-3xl font-bold uppercase mb-3">
             <a
               className="focus:outline-none text-gray-800 hover:text-gray-600 cursor-pointer"
               onClick={goBack}
@@ -58,7 +64,7 @@ const CarDetails = () => {
             </a>
             {car.model} Details
           </h1>
-          <div className="relative h-48 sm:h-56 md:h-64 lg:h-72 xl:h-100">
+          <div className="relative h-48 sm:h-56 md:h-64 lg:h-72 xl:h-96">
             <Image
               src={car.image}
               alt={car.model}
