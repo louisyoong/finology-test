@@ -58,12 +58,12 @@ const CarDetails = () => {
             </a>
             {car.model} Details
           </h1>
-          <div className="relative h-48 sm:h-56 md:h-64 lg:h-72 xl:h-80">
+          <div className="relative h-48 sm:h-56 md:h-64 lg:h-72 xl:h-100">
             <Image
               src={car.image}
               alt={car.model}
-              layout="fill"
-              objectFit="cover"
+              fill
+              style={{ objectFit: "cover" }}
               className="rounded-lg"
             />
           </div>

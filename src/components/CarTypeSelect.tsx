@@ -20,8 +20,8 @@ const CarTypeSelect: React.FC = () => {
             <Image
               src={car.image}
               alt={car.model}
-              layout="fill"
-              objectFit="cover"
+              fill
+              style={{ objectFit: "cover" }}
             />
           </div>
           <div className="p-4">
