@@ -43,6 +43,14 @@ const CarList: React.FC = () => {
     );
   };
 
+  // Define the options for the select element
+  const carTypeOptions = [
+    { value: "", label: "All Types" },
+    { value: "electric-car", label: "Electric Car" },
+    { value: "2-wheels", label: "2 Wheels" },
+    { value: "sport", label: "Sport Car" },
+  ];
+
   return (
     <>
       <MetaTitle
@@ -56,10 +64,11 @@ const CarList: React.FC = () => {
           value={selectedType || ""}
           className="w-full md:w-1/3 lg:w1/2 p-2 border border-gray-300 rounded-lg mb-4"
         >
-          <option value="">All Types</option>
-          <option value="electric-car">Electric Car</option>
-          <option value="2-wheels">2 Wheels</option>
-          <option value="sport">Sport Car</option>
+          {carTypeOptions.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
         </select>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
