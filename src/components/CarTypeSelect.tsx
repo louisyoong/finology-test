@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import carModels from "../data/carData";
 import Link from "next/link";
+import Image from "next/image";
 
 const CarTypeSelect: React.FC = () => {
   const [selectedType, setSelectedType] = useState<string | null>(null);
@@ -13,46 +14,40 @@ const CarTypeSelect: React.FC = () => {
   // Function to render a single car card
   const renderCarCard = (car: any) => {
     return (
-      <div key={car.id} className="w-1/3 p-4">
-        <Link href={`/car-details/${car.id}`}>
-          <div className="bg-white shadow-lg rounded-lg overflow-hidden">
-            <div className="p-4">
-              <h2 className="text-2xl font-semibold">{car.model}</h2>
-              <p className="text-gray-500">{car.description}</p>
-              <p className="text-gray-700 mt-2">
-                <span className="font-semibold">Brand:</span> {car.brand}
-              </p>
-              <p className="text-gray-700">
-                <span className="font-semibold">Year:</span> {car.year}
-              </p>
+      <div key={car.id}>
+        <div className="bg-white shadow-lg rounded-lg overflow-hidden">
+          <div className="relative h-48 sm:h-56 md:h-64 lg:h-72 xl:h-80">
+            <Image
+              src={car.image}
+              alt={car.model}
+              layout="fill"
+              objectFit="cover"
+            />
+          </div>
+          <div className="p-4">
+            <span className="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10 mr-2">
+              {car.brand}
+            </span>
+            <span className="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">
+              {car.year}
+            </span>
+            <h2 className="text-2xl font-semibold">{car.model}</h2>
+            <p className="text-gray-500">{car.description}</p>
+            <div className="flex justify-end mt-2 text-blue-500 hover:text-blue-600 font-semibold">
+              <Link href={`/car-details/${car.id}`}>Read More </Link>
             </div>
           </div>
-        </Link>
+        </div>
       </div>
     );
   };
 
-  // Function to render car rows
-  const renderCarRows = () => {
-    const carRows = [];
-    for (let i = 0; i < filteredCars.length; i += 3) {
-      const row = (
-        <div key={i} className="flex space-x-4">
-          {filteredCars.slice(i, i + 3).map(renderCarCard)}
-        </div>
-      );
-      carRows.push(row);
-    }
-    return carRows;
-  };
-
   return (
-    <div>
-      {/* Dropdown to select car type */}
+    <div className="container mx-auto py-4">
       <select
         onChange={(e) => setSelectedType(e.target.value)}
         value={selectedType || ""}
-        className="w-1/3 p-2 border border-gray-300 rounded-lg mb-4"
+        className="w-full md:w-1/3 lg:w1/2 p-2 border border-gray-300 rounded-lg mb-4"
       >
         <option value="">All Types</option>
         <option value="electric-car">Electric Car</option>
@@ -60,8 +55,9 @@ const CarTypeSelect: React.FC = () => {
         <option value="sport">Sport Car</option>
       </select>
 
-      {/* Display cars in rows */}
-      {renderCarRows()}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
+        {filteredCars.map(renderCarCard)}
+      </div>
     </div>
   );
 };
