@@ -8,9 +8,7 @@ type MetaTitleProps = {
 const MetaTitle: React.FC<MetaTitleProps> = ({ title, description }) => {
   return (
     <Head>
-      {/* <title>{title} - Finology Test</title> */}
       <title>{`${title}- Finology Test`}</title>
-
       <meta name="description" content={description} />
       <meta name="keywords" content="HTML, CSS, JavaScript" />
       <meta name="theme-color" content="#000000" />
