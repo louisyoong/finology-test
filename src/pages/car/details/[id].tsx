@@ -53,7 +53,7 @@ const CarDetails = () => {
         description={String(car.description)}
       />
 
-      <div className="container mx-auto flex flex-col items-center justify-center mt-10">
+      <div className="container mx-auto flex flex-col items-center justify-center mt-10 mb-10">
         <div className="w-10/12">
           <h1 className="flex items-center sm:text-lg md:text-3xl font-bold uppercase mb-3">
             <a
